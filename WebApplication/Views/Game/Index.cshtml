@@ -1,0 +1,111 @@
+﻿@model IEnumerable<WebApplication.Models.Game>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Title)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Publisher)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Genre)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Date)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Price)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Discount)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Img)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Description)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.OS)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.CPU)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.RAM)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.VideoCard)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.DirectX)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.HDD)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Title)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Publisher)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Genre)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Date)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Price)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Discount)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Img)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Description)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.OS)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.CPU)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.RAM)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.VideoCard)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.DirectX)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.HDD)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.Id }) |
+            @Html.ActionLink("Details", "Details", new { id=item.Id }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.Id })
+        </td>
+    </tr>
+}
+
+</table>
