@@ -1,18 +1,23 @@
-﻿using System.Data.Entity;
+﻿using System;
+using System.Collections.Generic;
+using System.Data;
+using System.Data.Entity;
 using System.Linq;
 using System.Net;
+using System.Web;
 using System.Web.Mvc;
 using WebApplication.Models;
 
 namespace WebApplication.Controllers
 {
-    public class GameController : Controller
+    public class OrderController : Controller
     {
         private HelpDeskContext db = new HelpDeskContext();
 
         public ActionResult Index()
         {
-            return View(db.Games.ToList());
+            var orders = db.Orders.Include(o => o.Game);
+            return View(orders.ToList());
         }
 
         public ActionResult Details(int? id)
@@ -21,31 +26,37 @@ namespace WebApplication.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Game game = db.Games.Find(id);
-            if (game == null)
+            Order order = db.Orders.Find(id);
+
+            if (order == null)
             {
                 return HttpNotFound();
             }
-            return View(game);
+
+            order.Game = db.Games.Find(order.GameId);
+
+            return View(order);
         }
 
         public ActionResult Create()
         {
+            ViewBag.GameId = new SelectList(db.Games, "Id", "Title");
             return View();
         }
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Title,Publisher,Genre,Date,Price,Discount,Img,Description,OS,CPU,RAM,VideoCard,DirectX,HDD")] Game game)
+        public ActionResult Create([Bind(Include="Id,GameId,Price,Name,Email,Phone")] Order order)
         {
             if (ModelState.IsValid)
             {
-                db.Games.Add(game);
+                db.Orders.Add(order);
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
 
-            return View(game);
+            ViewBag.GameId = new SelectList(db.Games, "Id", "Title", order.GameId);
+            return View(order);
         }
 
         public ActionResult Edit(int? id)
@@ -54,25 +65,27 @@ namespace WebApplication.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Game game = db.Games.Find(id);
-            if (game == null)
+            Order order = db.Orders.Find(id);
+            if (order == null)
             {
                 return HttpNotFound();
             }
-            return View(game);
+            ViewBag.GameId = new SelectList(db.Games, "Id", "Title", order.GameId);
+            return View(order);
         }
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Id,Title,Publisher,Genre,Date,Price,Discount,Img,Description,OS,CPU,RAM,VideoCard,DirectX,HDD")] Game game)
+        public ActionResult Edit([Bind(Include="Id,GameId,Price,Name,Email,Phone")] Order order)
         {
             if (ModelState.IsValid)
             {
-                db.Entry(game).State = EntityState.Modified;
+                db.Entry(order).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            return View(game);
+            ViewBag.GameId = new SelectList(db.Games, "Id", "Title", order.GameId);
+            return View(order);
         }
 
         public ActionResult Delete(int? id)
@@ -81,20 +94,20 @@ namespace WebApplication.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Game game = db.Games.Find(id);
-            if (game == null)
+            Order order = db.Orders.Find(id);
+            if (order == null)
             {
                 return HttpNotFound();
             }
-            return View(game);
+            return View(order);
         }
 
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            Game game = db.Games.Find(id);
-            db.Games.Remove(game);
+            Order order = db.Orders.Find(id);
+            db.Orders.Remove(order);
             db.SaveChanges();
             return RedirectToAction("Index");
         }
