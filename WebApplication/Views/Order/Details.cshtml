@@ -16,7 +16,7 @@
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.Game.Title)
+            @Html.ActionLink(Model.Game.Title, "Details", "Game", new { id = Model.GameId}, null)
         </dd>
 
         <dt>

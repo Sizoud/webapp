@@ -26,30 +26,39 @@ namespace WebApplication.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Order order = db.Orders.Find(id);
+            Order order = db.Orders.Include(o => o.Game).SingleOrDefault(x => x.Id == id);
 
             if (order == null)
             {
                 return HttpNotFound();
             }
 
-            order.Game = db.Games.Find(order.GameId);
-
             return View(order);
         }
 
-        public ActionResult Create()
+        public ActionResult Create(int? id)
         {
-            ViewBag.GameId = new SelectList(db.Games, "Id", "Title");
-            return View();
+            //ViewBag.GameId = new SelectList(db.Games, "Id", "Title");
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+
+            Order order = new Order();
+            order.Game = db.Games.Find(id);
+            order.GameId = id;
+            order.Price = order.Game.Price * (1-order.Game.Discount / 100);
+            return View(order);
+
         }
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include="Id,GameId,Price,Name,Email,Phone")] Order order)
+        public ActionResult Create([Bind(Include = "Id,GameId,Price,Name,Email,Phone")] Order order)
         {
             if (ModelState.IsValid)
             {
+                order.Game = db.Games.Find(order.GameId);
                 db.Orders.Add(order);
                 db.SaveChanges();
                 return RedirectToAction("Index");
@@ -76,7 +85,7 @@ namespace WebApplication.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include="Id,GameId,Price,Name,Email,Phone")] Order order)
+        public ActionResult Edit([Bind(Include = "Id,GameId,Price,Name,Email,Phone")] Order order)
         {
             if (ModelState.IsValid)
             {

@@ -3,14 +3,18 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using WebApplication.Models;
 
 namespace WebApplication.Controllers
 {
     public class HomeController : Controller
     {
+        private HelpDeskContext db = new HelpDeskContext();
+
         public ActionResult Index()
         {
-            return View();
+            //return View();
+            return View(db.Games.ToList());
         }
 
         public ActionResult About()

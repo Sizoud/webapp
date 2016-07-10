@@ -2,6 +2,7 @@
 
 @{
     ViewBag.Title = "Edit";
+    Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
 <h2>Edit</h2>
@@ -34,10 +35,10 @@
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.Genre, new { @class = "control-label col-md-2" })
+            @Html.LabelFor(model => model.GenreId,  new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.Genre)
-                @Html.ValidationMessageFor(model => model.Genre)
+                @Html.DropDownList("GenreId", String.Empty)
+                @Html.ValidationMessageFor(model => model.GenreId)
             </div>
         </div>
 
@@ -82,42 +83,42 @@
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.OS, new { @class = "control-label col-md-2" })
+            @Html.LabelFor(model => model.OSId,  new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.OS)
-                @Html.ValidationMessageFor(model => model.OS)
+                @Html.DropDownList("OSId", String.Empty)
+                @Html.ValidationMessageFor(model => model.OSId)
             </div>
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.CPU, new { @class = "control-label col-md-2" })
+            @Html.LabelFor(model => model.CPUId,  new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.CPU)
-                @Html.ValidationMessageFor(model => model.CPU)
+                @Html.DropDownList("CPUId", String.Empty)
+                @Html.ValidationMessageFor(model => model.CPUId)
             </div>
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.RAM, new { @class = "control-label col-md-2" })
+            @Html.LabelFor(model => model.RAMId,  new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.RAM)
-                @Html.ValidationMessageFor(model => model.RAM)
+                @Html.DropDownList("RAMId", String.Empty)
+                @Html.ValidationMessageFor(model => model.RAMId)
             </div>
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.VideoCard, new { @class = "control-label col-md-2" })
+            @Html.LabelFor(model => model.VideoCardId,  new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.VideoCard)
-                @Html.ValidationMessageFor(model => model.VideoCard)
+                @Html.DropDownList("VideoCardId", String.Empty)
+                @Html.ValidationMessageFor(model => model.VideoCardId)
             </div>
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.DirectX, new { @class = "control-label col-md-2" })
+            @Html.LabelFor(model => model.DirectXId,  new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.DirectX)
-                @Html.ValidationMessageFor(model => model.DirectX)
+                @Html.DropDownList("DirectXId", String.Empty)
+                @Html.ValidationMessageFor(model => model.DirectXId)
             </div>
         </div>
 

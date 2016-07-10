@@ -2,6 +2,7 @@
 
 @{
     ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
 <h2>Details</h2>
@@ -10,6 +11,7 @@
     <h4>Game</h4>
 	<hr />
     <dl class="dl-horizontal">
+
         <dt>
             @Html.DisplayNameFor(model => model.Title)
         </dt>
@@ -27,19 +29,67 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.Genre)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Genre)
-        </dd>
-
-        <dt>
             @Html.DisplayNameFor(model => model.Date)
         </dt>
 
         <dd>
             @Html.DisplayFor(model => model.Date)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Genre.Title)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Genre.Title)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.OS.Title)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.OS.Title)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CPU.Title)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CPU.Title)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.RAM.Title)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.RAM.Title)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.VideoCard.Title)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.VideoCard.Title)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.HDD)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.HDD)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.DirectX.Title)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DirectX.Title)
         </dd>
 
         <dt>
@@ -72,54 +122,6 @@
 
         <dd>
             @Html.DisplayFor(model => model.Description)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.OS)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.OS)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.CPU)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.CPU)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.RAM)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.RAM)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.VideoCard)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.VideoCard)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.DirectX)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.DirectX)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.HDD)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.HDD)
         </dd>
 
     </dl>

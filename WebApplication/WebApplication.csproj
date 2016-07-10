@@ -121,6 +121,12 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\AdminController.cs" />
     <Compile Include="Controllers\GameController.cs" />
+    <Compile Include="Controllers\Game\CPUController.cs" />
+    <Compile Include="Controllers\Game\DirectXController.cs" />
+    <Compile Include="Controllers\Game\GenreController.cs" />
+    <Compile Include="Controllers\Game\OSController.cs" />
+    <Compile Include="Controllers\Game\RAMController.cs" />
+    <Compile Include="Controllers\Game\VideoCardController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\OrderController.cs" />
     <Compile Include="Global.asax.cs">
@@ -128,6 +134,12 @@
     </Compile>
     <Compile Include="Models\DbContext.cs" />
     <Compile Include="Models\Game.cs" />
+    <Compile Include="Models\GameModels\CPU.cs" />
+    <Compile Include="Models\GameModels\DirectX.cs" />
+    <Compile Include="Models\GameModels\Genre.cs" />
+    <Compile Include="Models\GameModels\OS.cs" />
+    <Compile Include="Models\GameModels\RAM.cs" />
+    <Compile Include="Models\GameModels\VideoCard.cs" />
     <Compile Include="Models\LogViewModel.cs" />
     <Compile Include="Models\Order.cs" />
     <Compile Include="Models\User.cs" />
@@ -161,19 +173,43 @@
     <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Views\Home\About.cshtml" />
     <Content Include="Views\Home\Contact.cshtml" />
-    <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Scripts\jquery-1.10.2.min.map" />
     <Content Include="Views\Admin\Login.cshtml" />
-    <Content Include="Views\Game\Delete.cshtml" />
-    <Content Include="Views\Game\Details.cshtml" />
-    <Content Include="Views\Game\Edit.cshtml" />
-    <Content Include="Views\Game\Index.cshtml" />
-    <Content Include="Views\Game\Create.cshtml" />
     <Content Include="Views\Order\Create.cshtml" />
     <Content Include="Views\Order\Delete.cshtml" />
     <Content Include="Views\Order\Details.cshtml" />
     <Content Include="Views\Order\Edit.cshtml" />
     <Content Include="Views\Order\Index.cshtml" />
+    <Content Include="Views\Home\Index.cshtml" />
+    <Content Include="Views\Genre\Create.cshtml" />
+    <Content Include="Views\Genre\Delete.cshtml" />
+    <Content Include="Views\Genre\Edit.cshtml" />
+    <Content Include="Views\Genre\Index.cshtml" />
+    <Content Include="Views\OS\Create.cshtml" />
+    <Content Include="Views\OS\Delete.cshtml" />
+    <Content Include="Views\OS\Edit.cshtml" />
+    <Content Include="Views\OS\Index.cshtml" />
+    <Content Include="Views\CPU\Create.cshtml" />
+    <Content Include="Views\CPU\Delete.cshtml" />
+    <Content Include="Views\CPU\Edit.cshtml" />
+    <Content Include="Views\CPU\Index.cshtml" />
+    <Content Include="Views\RAM\Create.cshtml" />
+    <Content Include="Views\RAM\Delete.cshtml" />
+    <Content Include="Views\RAM\Edit.cshtml" />
+    <Content Include="Views\RAM\Index.cshtml" />
+    <Content Include="Views\VideoCard\Create.cshtml" />
+    <Content Include="Views\VideoCard\Delete.cshtml" />
+    <Content Include="Views\VideoCard\Edit.cshtml" />
+    <Content Include="Views\VideoCard\Index.cshtml" />
+    <Content Include="Views\DirectX\Create.cshtml" />
+    <Content Include="Views\DirectX\Delete.cshtml" />
+    <Content Include="Views\DirectX\Edit.cshtml" />
+    <Content Include="Views\DirectX\Index.cshtml" />
+    <Content Include="Views\Game\Create.cshtml" />
+    <Content Include="Views\Game\Delete.cshtml" />
+    <Content Include="Views\Game\Details.cshtml" />
+    <Content Include="Views\Game\Edit.cshtml" />
+    <Content Include="Views\Game\Index.cshtml" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>

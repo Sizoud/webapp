@@ -10,68 +10,29 @@ namespace WebApplication.Models
     {
         public int Id { get; set; }
 
-        public int GameId { get; set; }
+        [Required(ErrorMessage = "Выберете игру")]
+        [Display(Name = "Игра")]
+        public int? GameId { get; set; }
+
         public Game Game { get; set; }
-        public int Price { get; set; }
+
+        [Required(ErrorMessage = "Введите цену")]
+        [Display(Name = "Цена")]
+        public float Price { get; set; }
+
+        [Required(ErrorMessage = "Введите номер своё имя")]
+        [Display(Name = "Имя")]
         public string Name { get; set; }
+
+        [Required(ErrorMessage = "Введите номер Email")]
+        [RegularExpression(@"[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,4}", ErrorMessage = "Некорректный адрес")]
+        [Display(Name = "Email")]
         public string Email { get; set; }
+
+        [Required(ErrorMessage = "Введите номер телефона")]
+        [RegularExpression(@"^((80|\+375)[\- ]?)?(\(?\d{2}\)?[\- ]?)?[\d\- ]{7}$", ErrorMessage = "Некорректный номер телефона")]
+        [Display(Name = "номер телефона")]
         public string Phone { get; set; }
 
-
-        //// [Required]
-        //[Display(Name = "Издатель")]
-        //[MaxLength(30, ErrorMessage = "Превышена максимальная длина записи")]
-        //public string Publisher { get; set; }
-
-        //// [Required]
-        //[Display(Name = "Жанр")]
-        //[MaxLength(30, ErrorMessage = "Превышена максимальная длина записи")]
-        //public string Genre { get; set; }
-
-        ////  [Required]
-        ////[DataType(DataType.Date)]
-        //[Display(Name = "Дата выхода")]
-        //public string Date { get; set; }
-
-        //// [Required]
-        //[Display(Name = "Цена")]
-        //public float Price { get; set; }
-
-        //// [Display(Name = "Cкидка")]
-        //public float Discount { get; set; }
-
-        ////  [Required]
-        //[Display(Name = "Изображение")]
-        //public string Img { get; set; }
-
-        ////   [Required]
-        //[Display(Name = "Описание")]
-        //[MaxLength(500, ErrorMessage = "Превышена максимальная длина записи")]
-        //public string Description { get; set; }
-
-        ////  [Required]
-        //[Display(Name = "ОС")]
-        //public string OS { get; set; }
-
-        //// [Required]
-        //[Display(Name = "Процессор")]
-        //public string CPU { get; set; }
-
-        ////  [Required]
-        //[Display(Name = "ОЗУ")]
-        //public string RAM { get; set; }
-
-        ////  [Required]
-        //[Display(Name = "Видеокарта")]
-        //public string VideoCard { get; set; }
-
-        ////  [Required]
-        //[Display(Name = "DirectX")]
-        //public string DirectX { get; set; }
-
-
-        ////   [Required]
-        //[Display(Name = "HDD")]
-        //public string HDD { get; set; }
     }
 }
