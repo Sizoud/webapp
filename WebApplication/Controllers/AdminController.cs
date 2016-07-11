@@ -23,15 +23,7 @@ namespace WebApplication.Controllers
             {
                 if (ValidateUser(model.UserName, model.Password))
                 {
-                    FormsAuthentication.SetAuthCookie(model.UserName, model.RememberMe);
-                    if (Url.IsLocalUrl(returnUrl))
-                    {
-                        return Redirect(returnUrl);
-                    }
-                    else
-                    {
-                        return RedirectToAction("Index", "Home");
-                    }
+                        return SetAuthCookie(model.UserName, model.RememberMe, returnUrl);
                 }
                 else
                 {
@@ -39,6 +31,14 @@ namespace WebApplication.Controllers
                 }
             }
             return View(model);
+        }
+
+        private ActionResult SetAuthCookie(string userName, bool rememberMe, string returnUrl)
+        {
+            FormsAuthentication.SetAuthCookie(userName, rememberMe);
+            if (Url.IsLocalUrl(returnUrl))
+                return Redirect(returnUrl);
+            return RedirectToAction("Index", "Game");
         }
 
         public ActionResult LogOff()

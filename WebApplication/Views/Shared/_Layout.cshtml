@@ -5,43 +5,47 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>@ViewBag.Title - My ASP.NET Application</title>
     @Styles.Render("~/Content/css")
-    @Scripts.Render("~/bundles/modernizr")
 </head>
 <body>
-    <div class="navbar navbar-inverse navbar-fixed-top">
-        <div class="container">
-            <div class="navbar-header">
-                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
-                @Html.ActionLink("Application name", "Index", "Game", null, new { @class = "navbar-brand" })
-            </div>
-            <div class="navbar-collapse collapse">
-                <ul class="nav navbar-nav">
-                    <li>@Html.ActionLink("Главная", "Index", "Game")</li>
-                    <li>@Html.ActionLink("Заказы", "Index", "Order")</li>
-                    <li>@Html.ActionLink("Жанры", "Index", "Genre")</li>
-                    <li>@Html.ActionLink("OS", "Index", "OS")</li>
-                    <li>@Html.ActionLink("CPU", "Index", "CPU")</li>
-                    <li>@Html.ActionLink("RAM", "Index", "RAM")</li>
-                    <li>@Html.ActionLink("VideoCard", "Index", "VideoCard")</li>
-                    <li>@Html.ActionLink("DirectX", "Index", "DirectX")</li>
-                </ul>
-            </div>
+    <header>
+        <div>
+            @Html.ActionLink("Games.com", "Index", "Game", null, new { @class = "navbar-brand" }) |
+            @Html.ActionLink("Новинки 2016", "Novelty", "Game", null, new { @class = "navbar-brand" }) |
+            @Html.ActionLink("Скидки", "Discounts", "Game", null, new { @class = "navbar-brand" })
         </div>
-    </div>
-    <div class="container body-content">
+        <div class="login">
+            @if (User.Identity.IsAuthenticated)
+            {
+                @Html.ActionLink(@User.Identity.Name, "Me", "Card")
+                <span> | </span>
+                @Html.ActionLink("Log off", "LogOff", "Admin")
+            }
+            else
+            {
+                @Html.ActionLink("Log In", "Login", "Admin")
+            }
+        </div>
+    </header>
+    <div class="wrap">
+        <nav class="" style="width: 200px; margin-top: 15px; margin-right: 150px">
+            @{Html.RenderAction("ShowGenres", "Genre"); }
+        </nav>
         @RenderBody()
-        <hr />
-        <footer>
-            <p>&copy; @DateTime.Now.Year - My ASP.NET Application</p>
-        </footer>
     </div>
+    <img src="http://localhost:15352//Content/back.jpg" id="notebook">
 
+    <footer>
+        <div>
+            <p>Интернет магазин компьютерных игр, купить ключи Steam, лицензионные игры</p>
+            <p>© Сделано в Минске, 2016</p>
+        </div>
+
+        <div id="contacts">
+            <p>abcdef@gmail.com</p>
+            <p>+7 555 555 000</p>
+        </div>
+    </footer>
     @Scripts.Render("~/bundles/jquery")
-    @Scripts.Render("~/bundles/bootstrap")
     @RenderSection("scripts", required: false)
 </body>
 </html>

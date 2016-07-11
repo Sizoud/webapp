@@ -11,18 +11,15 @@ using WebApplication.Models;
 
 namespace WebApplication.Controllers.Game
 {
-    public class GenreController : Controller
+    public class OSController : Controller
     {
         private HelpDeskContext db = new HelpDeskContext();
 
         public ActionResult Index()
         {
-            return View(db.Genres.ToList());
+            return View(db.OS.ToList());
         }
-        public ActionResult ShowGenres()
-        {
-            return PartialView(db.Genres.ToList());
-        }
+
         public ActionResult Create()
         {
             return View();
@@ -30,16 +27,16 @@ namespace WebApplication.Controllers.Game
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include="Id,Title")] Genre genre)
+        public ActionResult Create([Bind(Include="Id,Title")] OS os)
         {
             if (ModelState.IsValid)
             {
-                db.Genres.Add(genre);
+                db.OS.Add(os);
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
 
-            return View(genre);
+            return View(os);
         }
 
         public ActionResult Edit(int? id)
@@ -48,25 +45,25 @@ namespace WebApplication.Controllers.Game
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Genre genre = db.Genres.Find(id);
-            if (genre == null)
+            OS os = db.OS.Find(id);
+            if (os == null)
             {
                 return HttpNotFound();
             }
-            return View(genre);
+            return View(os);
         }
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include="Id,Title")] Genre genre)
+        public ActionResult Edit([Bind(Include="Id,Title")] OS os)
         {
             if (ModelState.IsValid)
             {
-                db.Entry(genre).State = EntityState.Modified;
+                db.Entry(os).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            return View(genre);
+            return View(os);
         }
 
         public ActionResult Delete(int? id)
@@ -75,21 +72,20 @@ namespace WebApplication.Controllers.Game
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Genre genre = db.Genres.Find(id);
-            if (genre == null)
+            OS os = db.OS.Find(id);
+            if (os == null)
             {
                 return HttpNotFound();
             }
-            return View(genre);
+            return View(os);
         }
 
-        // POST: /Genre/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            Genre genre = db.Genres.Find(id);
-            db.Genres.Remove(genre);
+            OS os = db.OS.Find(id);
+            db.OS.Remove(os);
             db.SaveChanges();
             return RedirectToAction("Index");
         }

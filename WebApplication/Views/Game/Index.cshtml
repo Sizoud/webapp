@@ -1,113 +1,41 @@
 ﻿@model IEnumerable<WebApplication.Models.Game>
 
-@{
-    ViewBag.Title = "Index";
-    Layout = "~/Views/Shared/_Layout.cshtml";
-}
+<main class="home">
+    <section>
+        @foreach (var item in Model)
+        {
+            <div class="card" style="padding-right: 50px">
+                <img src="@Html.DisplayFor(modelitem => item.Img)" style="height: 235px" />
+                <div class="spacing">
+                    <div>@Html.ActionLink(item.Title, "Details", "Game", new { id = item.Id }, new { style = "color: blue" })</div>
+                    <div>@Html.DisplayFor(modelItem => item.Publisher)</div>
+                    <div>@Html.ActionLink(item.Genre.Title, "Genre", "Game", new { id = item.Id }, new { style = "color: blue" })</div>
+                    <div>@Html.DisplayFor(modelItem => item.Date)</div>
+                    <br />
+                    <div>
+                        Цена:
+                        <br/>
+                        @if (@item.Discount > 0)
+                        {
+                            @: <del>@Html.DisplayFor(modelItem => item.Price)р.</del>
+                            <span style="color: green; font-weight: bold">@((@item.Price*((100 - @item.Discount)/100.0)).ToString())р.</span>
+                        }
+                        else
+                        {
+                            @Html.DisplayFor(modelItem => item.Price)@:р.
+                        }
+                    </div>
+                    @if (@item.Discount > 0)
+                    {
+                        <div style="color: green; font-weight: bold">Cкидка: @Html.DisplayFor(modelItem => item.Discount)%</div>
+                    }
+                    <div>
+                        <br />
+                        <button class="inline" onclick="location.href = '@Url.Action("Create", "Order", new {id = item.Id})'">Купить</button>
+                    </div>
+                </div>
+            </div>
 
-<h2>Index</h2>
-
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
-<table class="table">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.CPU.Title)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.DirectX.Title)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Genre.Title)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.OS.Title)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.RAM.Title)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.VideoCard.Title)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Title)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Publisher)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Date)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Price)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Discount)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Img)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Description)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.HDD)
-        </th>
-        <th></th>
-    </tr>
-
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.CPU.Title)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.DirectX.Title)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Genre.Title)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.OS.Title)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.RAM.Title)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.VideoCard.Title)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Title)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Publisher)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Date)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Price)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Discount)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Img)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Description)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.HDD)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.Id }) |
-            @Html.ActionLink("Details", "Details", new { id=item.Id }) |
-            @Html.ActionLink("Delete", "Delete", new {id = item.Id}) |
-            @Html.ActionLink("Купить","Create", "Order", new { id = item.Id }, null)
-        </td>
-    </tr>
-}
-
-</table>
+        }
+    </section>
+</main>

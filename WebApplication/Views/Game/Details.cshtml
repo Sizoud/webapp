@@ -5,128 +5,54 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Details</h2>
-
-<div>
-    <h4>Game</h4>
-	<hr />
-    <dl class="dl-horizontal">
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Title)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Title)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Publisher)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Publisher)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Date)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Date)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Genre.Title)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Genre.Title)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.OS.Title)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.OS.Title)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.CPU.Title)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.CPU.Title)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.RAM.Title)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.RAM.Title)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.VideoCard.Title)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.VideoCard.Title)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.HDD)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.HDD)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.DirectX.Title)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.DirectX.Title)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Price)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Price)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Discount)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Discount)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Img)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Img)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Description)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Description)
-        </dd>
-
-    </dl>
+<div class="card" style="width: 800px">
+    <img src="@Html.DisplayFor(modelitem => modelitem.Img)" style="height: 200px" />
+    <div class="spacing">
+        <div>@Html.ActionLink(Model.Title, "Details", "Game", new { id = Model.Id }, new { style = "color: blue" })</div>
+        <div>@Html.DisplayFor(modelItem => modelItem.Publisher)</div>
+        <div>@Html.ActionLink(Model.Genre.Title, "Genre", "Game", new { id = Model.Id }, new { style = "color: blue" })</div>
+        <div>@Html.DisplayFor(modelItem => modelItem.Date)</div>
+        <br />
+        
+        <div>
+            Операционная система:
+            <br/>@Model.OS.Title
+        </div>
+        <div>
+            Процессор:
+            <br />@Model.CPU.Title
+        </div>
+        <div>
+            Объем ОЗУ. @Model.RAM.Title Гб
+        </div>
+        <div>
+            Видеокарта:
+            <br />@Model.VideoCard.Title
+        </div>
+        <div>
+            DirectX:
+            <br />@Model.DirectX.Title
+        </div>
+        <div>
+            HDD: @Model.HDD Гб
+        </div>
+        <br/>
+        <div>
+            Цена:
+            <br/>
+            @if (@Model.Discount > 0)
+            {
+                @: <del>@Html.DisplayFor(modelItem => modelItem.Price)р.</del>
+                <span style="color: green; font-weight: bold">@((@Model.Price*((100 - @Model.Discount)/100.0)).ToString())р.</span>
+            }
+            else
+            {
+                @Html.DisplayFor(modelItem => modelItem.Price)@:р.
+            }
+        </div>
+        <div>
+            <br />
+            <button class="inline" onclick="location.href = '@Url.Action("Create", "Order", new {id = Model.Id})'">Купить</button>
+        </div>
+    </div>
 </div>
-<p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
-    @Html.ActionLink("Back to List", "Index")
-</p>

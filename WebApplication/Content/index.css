@@ -1,0 +1,174 @@
+html, body {
+    height: 100%;
+    font: 20px Calibri;
+    color: white;
+}
+
+body {
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+header, footer {
+    background: rgba(89,125,163,.8);
+    display: flex;
+    justify-content: space-around;
+    box-sizing: border-box;
+    padding: 15px;
+}
+
+header {
+    height: 55px;
+}
+
+a {
+    color: white;
+    text-decoration: none;
+}
+
+footer {
+    justify-content: space-around;
+}
+
+main.index {
+    max-width: 60vw;
+    align-self: center;
+    background: rgba(255, 255, 255, .9);
+    padding: 40px;
+    color: black;
+    box-shadow: 1px 1px 5px #888;
+}
+
+main.register .card {
+    flex-direction: column;
+}
+
+    main.register .card > div {
+        margin: 10px 0;
+    }
+
+main.home {
+    display: flex;
+    justify-content: center;
+}
+
+nav {
+    display: flex;
+    flex-direction: column;
+    padding: 0 !important;
+    max-height: 34vh;
+}
+
+    nav a {
+        padding: 10px;
+        border-bottom: 1px solid #555;
+    }
+
+section:first-child {
+    margin-right: 30px;
+}
+
+h1, h2, h3, h4 {
+    margin: 0;
+    text-align: center;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+    font-size: 16px;
+    margin: 0;
+}
+
+input[type="text"]:not(.normal-inputs input),
+input[type="password"]:not(.normal-inputs input) {
+    width: 100%;
+    box-sizing: border-box;
+}
+
+button,
+input[type="submit"] {
+    background: #2DB6D8;
+    border: 0;
+    border-bottom: 4px solid #1178AE;
+    color: white;
+    padding: 10px;
+    text-transform: uppercase;
+    border-radius: 4px;
+    width: 100%;
+    transition: background .5s, border .5s;
+}
+
+    button:hover {
+        background: orange;
+        border-bottom-color: darkorange;
+    }
+
+    button.inline {
+        width: auto;
+    }
+
+audio {
+    margin-bottom: 15px;
+    width: 30vw;
+    box-sizing: border-box;
+}
+
+#notebook {
+    position: fixed;
+    z-index: -1;
+    top: 0;
+    height: 100vh;
+    width: 100vw;
+    opacity: .8;
+}
+
+#contacts {
+    margin-left: 100px;
+}
+
+.card {
+    background: #ffffff;
+    opacity: 0.95;
+    padding: 15px;
+    margin: 15px;
+    box-shadow: 1px 1px 5px #888;
+    max-width: 40vw;
+    color: black;
+    box-sizing: border-box;
+    display: flex;
+}
+
+    .card.vertical {
+        flex-direction: column;
+    }
+
+    .card img {
+        opacity: 1 !important;
+        margin-right: 15px;
+    }
+
+    .card a {
+        color: black;
+    }
+
+.wrap {
+    display: flex;
+    justify-content: center;
+}
+
+.buttons-margin button {
+    margin: 15px 0;
+}
+
+.photoBorder {
+    padding: 20px;
+    width: 200px;
+    background-color: #fff;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-position-x: 50%;
+    background-position-y: 50%;
+}

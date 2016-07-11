@@ -1,0 +1,10 @@
+﻿@model List<WebApplication.Models.GameModels.Genre>
+
+@{
+    ViewBag.Title = "title";
+}
+
+@foreach (var item in Model)
+{
+    @Html.ActionLink(item.Title, "Genre", "Game", new { id = item.Id }, new {style="background-color: #fff; color: black"})
+}

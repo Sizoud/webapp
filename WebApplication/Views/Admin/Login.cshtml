@@ -1,48 +1,32 @@
 ﻿@model WebApplication.Models.LogViewModel
 
-
 @using (Html.BeginForm())
 {
     @Html.AntiForgeryToken()
-
-    <div class="form-horizontal">
-        <br />
-        <h4>Вход в систему</h4>
-        <hr />
-        @Html.ValidationSummary(true)
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.UserName, new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.UserName)
-                @Html.ValidationMessageFor(model => model.UserName)
+    <main class="register">
+        <div class="card" style="width: 250px">
+            <h3>Вход в систему</h3>
+            @Html.ValidationSummary(true)
+            <div>
+                @Html.LabelFor(model => model.UserName)
+                <div>
+                    @Html.EditorFor(model => model.UserName)
+                    @Html.ValidationMessageFor(model => model.UserName)
+                </div>
             </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.Password, new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.Password)
-                @Html.ValidationMessageFor(model => model.Password)
+            <div>
+                @Html.LabelFor(model => model.Password)
+                <div>
+                    @Html.EditorFor(model => model.Password)
+                    @Html.ValidationMessageFor(model => model.Password)
+                </div>
             </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.RememberMe, new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
+            <div>
+                @Html.LabelFor(model => model.RememberMe)
                 @Html.EditorFor(model => model.RememberMe)
                 @Html.ValidationMessageFor(model => model.RememberMe)
             </div>
+            <input type="submit" value="Log In" />
         </div>
-
-        <div class="form-group">
-            <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Login" class="btn btn-default" />
-            </div>
-        </div>
-    </div>
-}
-
-@section Scripts {
-    @Scripts.Render("~/bundles/jqueryval")
+    </main>
 }

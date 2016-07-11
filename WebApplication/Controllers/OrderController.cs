@@ -38,7 +38,6 @@ namespace WebApplication.Controllers
 
         public ActionResult Create(int? id)
         {
-            //ViewBag.GameId = new SelectList(db.Games, "Id", "Title");
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
@@ -56,9 +55,9 @@ namespace WebApplication.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Create([Bind(Include = "Id,GameId,Price,Name,Email,Phone")] Order order)
         {
+            order.Game = db.Games.Find(order.GameId);
             if (ModelState.IsValid)
             {
-                order.Game = db.Games.Find(order.GameId);
                 db.Orders.Add(order);
                 db.SaveChanges();
                 return RedirectToAction("Index");

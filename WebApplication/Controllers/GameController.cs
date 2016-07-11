@@ -4,8 +4,12 @@ using System.Data;
 using System.Data.Entity;
 using System.Linq;
 using System.Net;
+using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
+using CloudinaryDotNet;
+using CloudinaryDotNet.Actions;
+using Microsoft.Ajax.Utilities;
 using WebApplication.Models;
 
 namespace WebApplication.Controllers
@@ -16,8 +20,28 @@ namespace WebApplication.Controllers
 
         public ActionResult Index()
         {
-            var games = db.Games.Include(g => g.CPU).Include(g => g.DirectX).Include(g => g.Genre).Include(g => g.OS).Include(g => g.RAM).Include(g => g.VideoCard);
-            return View(games.ToList());
+            var games = db.Games.Include(g => g.CPU).Include(g => g.DirectX).Include(g => g.Genre).Include(g => g.OS).Include(g => g.RAM).Include(g => g.VideoCard).ToList();
+            games.Reverse();
+            return View(games);
+        }
+
+        public ActionResult Novelty()
+        {
+            var games = db.Games.Include(g => g.CPU).Include(g => g.DirectX).Include(g => g.Genre).Include(g => g.OS).Include(g => g.RAM).Include(g => g.VideoCard).Where(x => x.Date.Substring(6).Equals("2016")).ToList();
+            games.Reverse();
+            return View("Index", games);
+        }
+        public ActionResult Discounts()
+        {
+            var games = db.Games.Include(g => g.CPU).Include(g => g.DirectX).Include(g => g.Genre).Include(g => g.OS).Include(g => g.RAM).Include(g => g.VideoCard).Where(x => x.Discount > 0).ToList();
+            games.Reverse();
+            return View("Index", games);
+        }
+        public ActionResult Genre(int id)
+        {
+            var games = db.Games.Include(g => g.CPU).Include(g => g.DirectX).Include(g => g.Genre).Include(g => g.OS).Include(g => g.RAM).Include(g => g.VideoCard).Where(x => x.GenreId == id).ToList();
+            games.Reverse();
+            return View("Index", games);
         }
 
         public ActionResult Details(int? id)
@@ -48,10 +72,11 @@ namespace WebApplication.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include="Id,Title,Publisher,GenreId,Date,Price,Discount,Img,Description,OSId,CPUId,RAMId,VideoCardId,DirectXId,HDD")] Models.Game game)
+        public async Task<ActionResult> Create([Bind(Include = "Id,Title,Publisher,GenreId,Date,Price,Discount,Img,Description,OSId,CPUId,RAMId,VideoCardId,DirectXId,HDD")] Models.Game game, HttpPostedFileBase uploadImage)
         {
             if (ModelState.IsValid)
             {
+                game.Img = uploadImage == null ? game.Img.IfNullOrWhiteSpace("https://new.vk.com/images/camera_200.png") : UploadPic(uploadImage);
                 db.Games.Add(game);
                 db.SaveChanges();
                 return RedirectToAction("Index");
@@ -64,6 +89,26 @@ namespace WebApplication.Controllers
             ViewBag.RAMId = new SelectList(db.RAMs, "Id", "Title", game.RAMId);
             ViewBag.VideoCardId = new SelectList(db.VideoCards, "Id", "Title", game.VideoCardId);
             return View(game);
+        }
+        private string UploadPic(HttpPostedFileBase uploadImage)
+        {
+            Models.Game content;
+            ImageUploadResult uploadResult = null;
+            Account account = new Account("celt", "478563425168974", "55ha3Kh1_40puuRq4ZoNKQfUeBk");
+            Cloudinary cloudinary = new Cloudinary(account);
+            var uploadParams = new ImageUploadParams()
+            {
+                File = new FileDescription(User.Identity.Name, uploadImage.InputStream),
+                Transformation = new Transformation().Crop("limit").Width(800).Height(800)
+            };
+
+            uploadResult = cloudinary.Upload(uploadParams);
+            if (uploadResult.Error != null)
+            {
+                return "https://new.vk.com/images/camera_200.png";
+            }
+
+            return uploadResult.Uri.AbsoluteUri;
         }
 
         public ActionResult Edit(int? id)
@@ -88,10 +133,11 @@ namespace WebApplication.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include="Id,Title,Publisher,GenreId,Date,Price,Discount,Img,Description,OSId,CPUId,RAMId,VideoCardId,DirectXId,HDD")] Models.Game game)
+        public ActionResult Edit([Bind(Include = "Id,Title,Publisher,GenreId,Date,Price,Discount,Img,Description,OSId,CPUId,RAMId,VideoCardId,DirectXId,HDD")] Models.Game game, HttpPostedFileBase uploadImage)
         {
             if (ModelState.IsValid)
             {
+                game.Img = uploadImage == null ? game.Img.IfNullOrWhiteSpace("https://new.vk.com/images/camera_200.png") : UploadPic(uploadImage);
                 db.Entry(game).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");
@@ -137,5 +183,6 @@ namespace WebApplication.Controllers
             }
             base.Dispose(disposing);
         }
+
     }
 }

@@ -20,7 +20,7 @@ namespace WebApplication.Models
         [Display(Name = "Цена")]
         public float Price { get; set; }
 
-        [Required(ErrorMessage = "Введите номер своё имя")]
+        [Required(ErrorMessage = "Введите своё имя")]
         [Display(Name = "Имя")]
         public string Name { get; set; }
 
@@ -31,7 +31,7 @@ namespace WebApplication.Models
 
         [Required(ErrorMessage = "Введите номер телефона")]
         [RegularExpression(@"^((80|\+375)[\- ]?)?(\(?\d{2}\)?[\- ]?)?[\d\- ]{7}$", ErrorMessage = "Некорректный номер телефона")]
-        [Display(Name = "номер телефона")]
+        [Display(Name = "Номер телефона")]
         public string Phone { get; set; }
 
     }
