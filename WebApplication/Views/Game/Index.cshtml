@@ -4,7 +4,7 @@
     <section>
         @foreach (var item in Model)
         {
-            <div class="card" style="padding-right: 50px">
+            <div class="card" style="min-width: 500px; padding-right: 50px">
                 <img src="@Html.DisplayFor(modelitem => item.Img)" style="height: 235px" />
                 <div class="spacing">
                     <div>@Html.ActionLink(item.Title, "Details", "Game", new { id = item.Id }, new { style = "color: blue" })</div>

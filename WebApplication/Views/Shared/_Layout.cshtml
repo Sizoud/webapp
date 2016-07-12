@@ -9,9 +9,9 @@
 <body>
     <header>
         <div>
-            @Html.ActionLink("Games.com", "Index", "Game", null, new { @class = "navbar-brand" }) |
-            @Html.ActionLink("Новинки 2016", "Novelty", "Game", null, new { @class = "navbar-brand" }) |
-            @Html.ActionLink("Скидки", "Discounts", "Game", null, new { @class = "navbar-brand" })
+            @Html.ActionLink("Games.com", "Index", "Game", null, null) <span> | </span>
+            @Html.ActionLink("Новинки 2016", "Novelty", "Game", null, null) <span> | </span>
+            @Html.ActionLink("Скидки", "Discounts", "Game", null, null)
         </div>
         <div class="login">
             @if (User.Identity.IsAuthenticated)

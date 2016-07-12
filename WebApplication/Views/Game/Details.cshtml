@@ -5,7 +5,7 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<div class="card" style="width: 800px">
+<div class="card" style="min-width:700px; width: 800px">
     <img src="@Html.DisplayFor(modelitem => modelitem.Img)" style="height: 200px" />
     <div class="spacing">
         <div>@Html.ActionLink(Model.Title, "Details", "Game", new { id = Model.Id }, new { style = "color: blue" })</div>
@@ -53,6 +53,8 @@
         <div>
             <br />
             <button class="inline" onclick="location.href = '@Url.Action("Create", "Order", new {id = Model.Id})'">Купить</button>
+            <button class="inline" onclick="location.href = '@Url.Action("Edit", "Game", new {id = Model.Id})'">Редактировать</button>
+            <button class="inline" style="background: #d83e2d; "onclick="location.href = '@Url.Action("Delete", "Game", new { id = Model.Id })'">Удалить</button>
         </div>
     </div>
 </div>

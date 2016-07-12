@@ -135,6 +135,15 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201607102021133_InitialCreate.cs" />
+    <Compile Include="Migrations\201607102021133_InitialCreate.Designer.cs">
+      <DependentUpon>201607102021133_InitialCreate.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201607121959078_in.cs" />
+    <Compile Include="Migrations\201607121959078_in.Designer.cs">
+      <DependentUpon>201607121959078_in.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\DbContext.cs" />
     <Compile Include="Models\Game.cs" />
     <Compile Include="Models\GameModels\CPU.cs" />
@@ -217,7 +226,14 @@
     <Content Include="Views\Game\Index.cshtml" />
     <None Include="Views\Genre\ShowGenres.cshtml" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <EmbeddedResource Include="Migrations\201607102021133_InitialCreate.resx">
+      <DependentUpon>201607102021133_InitialCreate.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201607121959078_in.resx">
+      <DependentUpon>201607121959078_in.cs</DependentUpon>
+    </EmbeddedResource>
+  </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
     <Content Include="fonts\glyphicons-halflings-regular.ttf" />

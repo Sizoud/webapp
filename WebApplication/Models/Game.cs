@@ -45,8 +45,9 @@ namespace WebApplication.Models
         public string Img { get; set; }
 
         [Required(ErrorMessage = "Введите описание")]
+        [DataType(DataType.MultilineText)]
         [Display(Name = "Описание")]
-        [MaxLength(500, ErrorMessage = "Превышена максимальная длина записи")]
+        [MaxLength(1500, ErrorMessage = "Превышена максимальная длина записи")]
         public string Description { get; set; }
 
         [Required(ErrorMessage = "Выберете минимальную ОС")]

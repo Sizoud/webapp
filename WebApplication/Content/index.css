@@ -110,11 +110,6 @@ input[type="submit"] {
         width: auto;
     }
 
-audio {
-    margin-bottom: 15px;
-    width: 30vw;
-    box-sizing: border-box;
-}
 
 #notebook {
     position: fixed;
