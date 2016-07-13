@@ -102,7 +102,7 @@ namespace WebApplication.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Order order = db.Orders.Find(id);
+            Order order = db.Orders.Include(o => o.Game).SingleOrDefault(x => x.Id == id);
             if (order == null)
             {
                 return HttpNotFound();

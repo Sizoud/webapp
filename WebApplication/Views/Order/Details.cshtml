@@ -5,55 +5,59 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Details</h2>
 
-<div>
-    <h4>Order</h4>
-	<hr />
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.Game.Title)
-        </dt>
+<div class="card">
+    <div>
+        <dl class="dl-horizontal" style="padding: 20px">
+            <dt>
+                @Html.DisplayNameFor(model => model.Game.Title)
+            </dt>
 
-        <dd>
-            @Html.ActionLink(Model.Game.Title, "Details", "Game", new { id = Model.GameId}, null)
-        </dd>
+            <dd>
+                @Html.ActionLink(Model.Game.Title, "Details", "Game", new {id = Model.GameId}, null)
+            </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Price)
-        </dt>
+            <dt>
+                @Html.DisplayNameFor(model => model.Price)
+            </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.Price)
-        </dd>
+            <dd>
+                @Html.DisplayFor(model => model.Price)
+            </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Name)
-        </dt>
+            <dt>
+                @Html.DisplayNameFor(model => model.Name)
+            </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.Name)
-        </dd>
+            <dd>
+                @Html.DisplayFor(model => model.Name)
+            </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Email)
-        </dt>
+            <dt>
+                @Html.DisplayNameFor(model => model.Email)
+            </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.Email)
-        </dd>
+            <dd>
+                @Html.DisplayFor(model => model.Email)
+            </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Phone)
-        </dt>
+            <dt>
+                @Html.DisplayNameFor(model => model.Phone)
+            </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.Phone)
-        </dd>
+            <dd>
+                @Html.DisplayFor(model => model.Phone)
+            </dd>
 
-    </dl>
+        </dl>
+        <dl>
+            <button class="button" onclick="location.href = '@Url.Action("Edit", "Order", new {id = Model.Id})'">Редактировать</button>
+            <p></p>
+            <button class="button" style="background-color: #d83e2d" onclick="location.href = '@Url.Action("Delete", "Order", new {id = Model.Id})'">Удалить</button>
+            <p></p>
+            <button class="button" onclick="location.href = '@Url.Action("Index", "Order")'">Назад</button>
+        </dl>
+    </div>
+
+   
 </div>
-<p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
-    @Html.ActionLink("Back to List", "Index")
-</p>

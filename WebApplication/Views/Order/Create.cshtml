@@ -13,7 +13,7 @@
                 @Html.ActionLink(Model.Game.Title, "Details", "Game", new {id = Model.GameId}, new {style = "color: blue"})
             </div>
             <div>
-                Цена: @Html.DisplayFor(model => model.Price)
+                <b>Цена: @Html.DisplayFor(model => model.Price)</b>
             </div>
             <div>
                 @Html.LabelFor(model => model.Name)

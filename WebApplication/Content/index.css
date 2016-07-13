@@ -92,7 +92,7 @@ input[type="password"]:not(.normal-inputs input) {
     box-sizing: border-box;
 }
 
-button,
+.buttonmy,button,
 input[type="submit"] {
     font: 16px Calibri;
     background: #2DB6D8;
@@ -106,7 +106,7 @@ input[type="submit"] {
     transition: background .5s, border .5s;
 }
 
-    button:hover {
+    .buttonmy:hover,button:hover {
         background: orange;
         border-bottom-color: darkorange;
     }
