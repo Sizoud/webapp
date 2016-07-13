@@ -9,12 +9,9 @@ namespace WebApplication.Controllers
 {
     public class HomeController : Controller
     {
-        private HelpDeskContext db = new HelpDeskContext();
-
         public ActionResult Index()
         {
-            //return View();
-            return View(db.Games.ToList());
+            return View();
         }
 
         public ActionResult About()
