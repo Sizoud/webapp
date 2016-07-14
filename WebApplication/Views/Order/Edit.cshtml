@@ -14,7 +14,7 @@
             @Html.HiddenFor(model => model.Id)
 
             <div class="form-group">
-                @Html.LabelFor(model => model.GameId, "GameId")
+                @Html.LabelFor(model => model.GameId, "Игра")
                 <div >
                     @Html.DropDownList("GameId", String.Empty)
                     @Html.ValidationMessageFor(model => model.GameId)

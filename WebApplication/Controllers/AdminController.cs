@@ -45,7 +45,7 @@ namespace WebApplication.Controllers
         {
             FormsAuthentication.SignOut();
 
-            return RedirectToAction("Login", "Admin");
+            return RedirectToAction("Index", "Game");
         }
 
         private bool ValidateUser(string login, string password)

@@ -13,10 +13,10 @@
         <div>@Html.ActionLink(Model.Genre.Title, "Genre", "Game", new { id = Model.Id }, new { style = "color: blue" })</div>
         <div>@Html.DisplayFor(modelItem => modelItem.Date)</div>
         <br />
-        
+
         <div>
             Операционная система:
-            <br/>@Model.OS.Title
+            <br />@Model.OS.Title
         </div>
         <div>
             Процессор:
@@ -36,27 +36,30 @@
         <div>
             HDD: @Model.HDD Гб
         </div>
-        <br/>
+        <br />
         <div>
             Цена:
-            <br/>
+            <br />
             @if (@Model.Discount > 0)
             {
                 @: <del>@Html.DisplayFor(modelItem => modelItem.Price)р.</del>
-                <span style="color: green; font-weight: bold">@((@Model.Price*((100 - @Model.Discount)/100.0)).ToString())р.</span>
+                <span style="color: green; font-weight: bold">@((@Model.Price * ((100 - @Model.Discount) / 100.0)).ToString())р.</span>
             }
             else
             {
                 @Html.DisplayFor(modelItem => modelItem.Price)@:р.
             }
         </div>
+        <br />
+        <div>@Html.DisplayFor(modelItem => modelItem.Description)</div>
+        <br />
         <div>
             <br />
             <button class="inline" onclick="location.href = '@Url.Action("Create", "Order", new {id = Model.Id})'">Купить</button>
             @if (User.Identity.IsAuthenticated)
             {
                 <button class="inline" onclick="location.href = '@Url.Action("Edit", "Game", new {id = Model.Id})'">Редактировать</button>
-                <button class="inline" style="background: #d83e2d;"onclick="location.href = '@Url.Action("Delete", "Game", new {id = Model.Id})'">Удалить</button>
+                <button class="inline" style="background: #d83e2d;" onclick="location.href = '@Url.Action("Delete", "Game", new {id = Model.Id})'">Удалить</button>
             }
         </div>
     </div>

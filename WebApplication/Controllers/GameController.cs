@@ -162,7 +162,7 @@ namespace WebApplication.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Models.Game game = db.Games.Find(id);
+            Models.Game game = db.Games.Include(g => g.CPU).Include(g => g.DirectX).Include(g => g.Genre).Include(g => g.OS).Include(g => g.RAM).Include(g => g.VideoCard).SingleOrDefault(x => x.Id == id);
             if (game == null)
             {
                 return HttpNotFound();

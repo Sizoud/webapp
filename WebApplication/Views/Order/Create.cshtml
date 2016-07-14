@@ -10,7 +10,7 @@
             @Html.HiddenFor(model => model.GameId)
             @Html.HiddenFor(model => model.Price)
             <div>
-                @Html.ActionLink(Model.Game.Title, "Details", "Game", new {id = Model.GameId}, new {style = "color: blue"})
+                <b>Игра: @Html.ActionLink(Model.Game.Title, "Details", "Game", new {id = Model.GameId}, new {style = "color: blue"})</b> 
             </div>
             <div>
                 <b>Цена: @Html.DisplayFor(model => model.Price)</b>

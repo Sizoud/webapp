@@ -22,7 +22,6 @@ namespace WebApplication.Controllers.Game
             return View(db.Genres.ToList());
         }
 
-        [Authorize]
         public ActionResult ShowGenres()
         {
             return PartialView(db.Genres.ToList());
