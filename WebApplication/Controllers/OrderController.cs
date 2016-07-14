@@ -14,12 +14,14 @@ namespace WebApplication.Controllers
     {
         private HelpDeskContext db = new HelpDeskContext();
 
+        [Authorize]
         public ActionResult Index()
         {
             var orders = db.Orders.Include(o => o.Game);
             return View(orders.ToList());
         }
 
+        [Authorize]
         public ActionResult Details(int? id)
         {
             if (id == null)
@@ -67,6 +69,7 @@ namespace WebApplication.Controllers
             return View(order);
         }
 
+        [Authorize]
         public ActionResult Edit(int? id)
         {
             if (id == null)
@@ -83,6 +86,7 @@ namespace WebApplication.Controllers
         }
 
         [HttpPost]
+        [Authorize]
         [ValidateAntiForgeryToken]
         public ActionResult Edit([Bind(Include = "Id,GameId,Price,Name,Email,Phone")] Order order)
         {
@@ -96,6 +100,7 @@ namespace WebApplication.Controllers
             return View(order);
         }
 
+        [Authorize]
         public ActionResult Delete(int? id)
         {
             if (id == null)
@@ -110,6 +115,7 @@ namespace WebApplication.Controllers
             return View(order);
         }
 
+        [Authorize]
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)

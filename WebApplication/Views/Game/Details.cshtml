@@ -53,8 +53,11 @@
         <div>
             <br />
             <button class="inline" onclick="location.href = '@Url.Action("Create", "Order", new {id = Model.Id})'">Купить</button>
-            <button class="inline" onclick="location.href = '@Url.Action("Edit", "Game", new {id = Model.Id})'">Редактировать</button>
-            <button class="inline" style="background: #d83e2d; "onclick="location.href = '@Url.Action("Delete", "Game", new { id = Model.Id })'">Удалить</button>
+            @if (User.Identity.IsAuthenticated)
+            {
+                <button class="inline" onclick="location.href = '@Url.Action("Edit", "Game", new {id = Model.Id})'">Редактировать</button>
+                <button class="inline" style="background: #d83e2d;"onclick="location.href = '@Url.Action("Delete", "Game", new {id = Model.Id})'">Удалить</button>
+            }
         </div>
     </div>
 </div>

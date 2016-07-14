@@ -15,16 +15,19 @@ namespace WebApplication.Controllers.Game
     {
         private HelpDeskContext db = new HelpDeskContext();
 
+        [Authorize]
         public ActionResult Index()
         {
             return View(db.RAMs.ToList());
         }
 
+        [Authorize]
         public ActionResult Create()
         {
             return View();
         }
 
+        [Authorize]
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Create([Bind(Include="Id,Title")] RAM ram)
@@ -39,6 +42,7 @@ namespace WebApplication.Controllers.Game
             return View(ram);
         }
 
+        [Authorize]
         public ActionResult Edit(int? id)
         {
             if (id == null)
@@ -53,6 +57,7 @@ namespace WebApplication.Controllers.Game
             return View(ram);
         }
 
+        [Authorize]
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Edit([Bind(Include="Id,Title")] RAM ram)
@@ -66,6 +71,7 @@ namespace WebApplication.Controllers.Game
             return View(ram);
         }
 
+        [Authorize]
         public ActionResult Delete(int? id)
         {
             if (id == null)
@@ -80,6 +86,7 @@ namespace WebApplication.Controllers.Game
             return View(ram);
         }
 
+        [Authorize]
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)

@@ -15,16 +15,19 @@ namespace WebApplication.Controllers.Game
     {
         private HelpDeskContext db = new HelpDeskContext();
 
+        [Authorize]
         public ActionResult Index()
         {
             return View(db.OS.ToList());
         }
 
+        [Authorize]
         public ActionResult Create()
         {
             return View();
         }
 
+        [Authorize]
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Create([Bind(Include="Id,Title")] OS os)
@@ -39,6 +42,7 @@ namespace WebApplication.Controllers.Game
             return View(os);
         }
 
+        [Authorize]
         public ActionResult Edit(int? id)
         {
             if (id == null)
@@ -53,6 +57,7 @@ namespace WebApplication.Controllers.Game
             return View(os);
         }
 
+        [Authorize]
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Edit([Bind(Include="Id,Title")] OS os)
@@ -66,6 +71,7 @@ namespace WebApplication.Controllers.Game
             return View(os);
         }
 
+        [Authorize]
         public ActionResult Delete(int? id)
         {
             if (id == null)
@@ -80,6 +86,7 @@ namespace WebApplication.Controllers.Game
             return View(os);
         }
 
+        [Authorize]
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)

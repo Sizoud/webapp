@@ -15,17 +15,20 @@ namespace WebApplication.Controllers.Game
     {
         private HelpDeskContext db = new HelpDeskContext();
 
+        [Authorize]
         public ActionResult Index()
         {
             return View(db.CPUs.ToList());
         }
 
+        [Authorize]
         public ActionResult Create()
         {
             return View();
         }
 
         [HttpPost]
+        [Authorize]
         [ValidateAntiForgeryToken]
         public ActionResult Create([Bind(Include="Id,Title")] CPU cpu)
         {
@@ -39,6 +42,7 @@ namespace WebApplication.Controllers.Game
             return View(cpu);
         }
 
+        [Authorize]
         public ActionResult Edit(int? id)
         {
             if (id == null)
@@ -54,6 +58,7 @@ namespace WebApplication.Controllers.Game
         }
 
         [HttpPost]
+        [Authorize]
         [ValidateAntiForgeryToken]
         public ActionResult Edit([Bind(Include="Id,Title")] CPU cpu)
         {
@@ -66,6 +71,7 @@ namespace WebApplication.Controllers.Game
             return View(cpu);
         }
 
+        [Authorize]
         public ActionResult Delete(int? id)
         {
             if (id == null)
@@ -80,6 +86,7 @@ namespace WebApplication.Controllers.Game
             return View(cpu);
         }
 
+        [Authorize]
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
