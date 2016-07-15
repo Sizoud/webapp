@@ -16,20 +16,24 @@
         <div class="login">
             @if (User.Identity.IsAuthenticated)
             {
-                @Html.ActionLink("Admin Panel", "Index", "Home")
-                <span> | </span>
-                @Html.ActionLink("Log off", "LogOff", "Admin")
+                if (User.IsInRole("admin"))
+                {
+                    @Html.ActionLink("Admin Panel", "Index", "Home")
+                    <span> | </span>
+                }
+                @Html.ActionLink("Log off", "LogOff", "Account")
             }
             else
             {
-                @Html.ActionLink("Log In", "Login", "Admin")
+                @Html.ActionLink("Войти", "Login", "Account")
+                 <span> | </span>
+                @Html.ActionLink("Регистрация", "Register", "Account")
             }
         </div>
     </header>
     <div class="wrap">
-        <nav class="" style="width: 200px; margin-top: 15px; margin-right: 150px">
             @{Html.RenderAction("ShowGenres", "Genre"); }
-        </nav>
+        
         @RenderBody()
     </div>
     <img src="http://localhost:15352//Content/back.jpg" id="notebook">
