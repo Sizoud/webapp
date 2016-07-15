@@ -74,7 +74,7 @@ namespace WebApplication.Controllers
         [HttpPost]
         [Authorize]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Create([Bind(Include = "Id,Title,Publisher,GenreId,Date,Price,Discount,Img,Description,OSId,CPUId,RAMId,VideoCardId,DirectXId,HDD")] Models.Game game, HttpPostedFileBase uploadImage)
+        public async Task<ActionResult> Create([Bind(Include = "Title,Publisher,GenreId,Date,Price,Discount,Img,Description,OSId,CPUId,RAMId,VideoCardId,DirectXId,HDD")] Models.Game game, HttpPostedFileBase uploadImage)
         {
             if (ModelState.IsValid)
             {
@@ -162,19 +162,6 @@ namespace WebApplication.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Models.Game game = db.Games.Include(g => g.CPU).Include(g => g.DirectX).Include(g => g.Genre).Include(g => g.OS).Include(g => g.RAM).Include(g => g.VideoCard).SingleOrDefault(x => x.Id == id);
-            if (game == null)
-            {
-                return HttpNotFound();
-            }
-            return View(game);
-        }
-
-        [Authorize]
-        [HttpPost, ActionName("Delete")]
-        [ValidateAntiForgeryToken]
-        public ActionResult DeleteConfirmed(int id)
-        {
             Models.Game game = db.Games.Find(id);
             db.Games.Remove(game);
             db.SaveChanges();
