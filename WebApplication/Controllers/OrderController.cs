@@ -14,14 +14,14 @@ namespace WebApplication.Controllers
     {
         private HelpDeskContext db = new HelpDeskContext();
 
-        [Authorize]
+        [Authorize(Roles = "admin")]
         public ActionResult Index()
         {
             var orders = db.Orders.Include(o => o.Game);
             return View(orders.ToList());
         }
 
-        [Authorize]
+        [Authorize(Roles = "admin")]
         public ActionResult Details(int? id)
         {
             if (id == null)
@@ -38,6 +38,7 @@ namespace WebApplication.Controllers
             return View(order);
         }
 
+        [Authorize]
         public ActionResult Create(int? id)
         {
             if (id == null)
@@ -48,7 +49,7 @@ namespace WebApplication.Controllers
             Order order = new Order();
             order.Game = db.Games.Find(id);
             order.GameId = id;
-            order.Price = order.Game.Price * (1-order.Game.Discount / 100);
+            order.Price = order.Game.Price * (1 - order.Game.Discount / 100);
             return View(order);
 
         }
@@ -62,14 +63,14 @@ namespace WebApplication.Controllers
             {
                 db.Orders.Add(order);
                 db.SaveChanges();
-                return RedirectToAction("Index");
+                return RedirectToAction("Index","Game");
             }
 
             ViewBag.GameId = new SelectList(db.Games, "Id", "Title", order.GameId);
             return View(order);
         }
 
-        [Authorize]
+        [Authorize(Roles = "admin")]
         public ActionResult Edit(int? id)
         {
             if (id == null)
@@ -86,7 +87,7 @@ namespace WebApplication.Controllers
         }
 
         [HttpPost]
-        [Authorize]
+        [Authorize(Roles = "admin")]
         [ValidateAntiForgeryToken]
         public ActionResult Edit([Bind(Include = "Id,GameId,Price,Name,Email,Phone")] Order order)
         {
@@ -100,7 +101,7 @@ namespace WebApplication.Controllers
             return View(order);
         }
 
-        [Authorize]
+        [Authorize(Roles = "admin")]
         public ActionResult Delete(int? id)
         {
             if (id == null)
@@ -115,7 +116,7 @@ namespace WebApplication.Controllers
             return View(order);
         }
 
-        [Authorize]
+        [Authorize(Roles = "admin")]
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)

@@ -11,19 +11,19 @@ namespace WebApplication.Controllers.Game
     {
         private HelpDeskContext db = new HelpDeskContext();
 
-        [Authorize]
+        [Authorize(Roles = "admin")]
         public ActionResult Index()
         {
             return View(db.VideoCards.ToList());
         }
 
-        [Authorize]
+        [Authorize(Roles = "admin")]
         public ActionResult Create()
         {
             return View();
         }
 
-        [Authorize]
+        [Authorize(Roles = "admin")]
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Create([Bind(Include="Id,Title")] VideoCard videocard)
@@ -38,7 +38,7 @@ namespace WebApplication.Controllers.Game
             return View(videocard);
         }
 
-        [Authorize]
+        [Authorize(Roles = "admin")]
         public ActionResult Edit(int? id)
         {
             if (id == null)
@@ -53,7 +53,7 @@ namespace WebApplication.Controllers.Game
             return View(videocard);
         }
 
-        [Authorize]
+        [Authorize(Roles = "admin")]
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Edit([Bind(Include="Id,Title")] VideoCard videocard)
@@ -67,7 +67,7 @@ namespace WebApplication.Controllers.Game
             return View(videocard);
         }
 
-        [Authorize]
+        [Authorize(Roles = "admin")]
         public ActionResult Delete(int? id)
         {
             if (id == null)
@@ -92,7 +92,7 @@ namespace WebApplication.Controllers.Game
             return RedirectToAction("Index");
         }
 
-        [Authorize]
+        [Authorize(Roles = "admin")]
         protected override void Dispose(bool disposing)
         {
             if (disposing)

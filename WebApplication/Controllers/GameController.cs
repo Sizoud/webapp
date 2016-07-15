@@ -59,7 +59,7 @@ namespace WebApplication.Controllers
             return View(game);
         }
 
-        [Authorize]
+        [Authorize(Roles = "admin")]
         public ActionResult Create()
         {
             ViewBag.CPUId = new SelectList(db.CPUs, "Id", "Title");
@@ -72,7 +72,7 @@ namespace WebApplication.Controllers
         }
 
         [HttpPost]
-        [Authorize]
+        [Authorize(Roles = "admin")]
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> Create([Bind(Include = "Title,Publisher,GenreId,Date,Price,Discount,Img,Description,OSId,CPUId,RAMId,VideoCardId,DirectXId,HDD")] Models.Game game, HttpPostedFileBase uploadImage)
         {
@@ -113,7 +113,7 @@ namespace WebApplication.Controllers
             return uploadResult.Uri.AbsoluteUri;
         }
 
-        [Authorize]
+        [Authorize(Roles = "admin")]
         public ActionResult Edit(int? id)
         {
             if (id == null)
@@ -135,7 +135,7 @@ namespace WebApplication.Controllers
         }
 
         [HttpPost]
-        [Authorize]
+        [Authorize(Roles = "admin")]
         [ValidateAntiForgeryToken]
         public ActionResult Edit([Bind(Include = "Id,Title,Publisher,GenreId,Date,Price,Discount,Img,Description,OSId,CPUId,RAMId,VideoCardId,DirectXId,HDD")] Models.Game game, HttpPostedFileBase uploadImage)
         {
@@ -155,7 +155,7 @@ namespace WebApplication.Controllers
             return View(game);
         }
 
-        [Authorize]
+        [Authorize(Roles = "admin")]
         public ActionResult Delete(int? id)
         {
             if (id == null)

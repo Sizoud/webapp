@@ -15,22 +15,22 @@ namespace WebApplication.Controllers.Game
     {
         private HelpDeskContext db = new HelpDeskContext();
 
-        [Authorize]
+        [Authorize(Roles = "admin")]
         public ActionResult Index()
         {
             return View(db.CPUs.ToList());
         }
 
-        [Authorize]
+        [Authorize(Roles = "admin")]
         public ActionResult Create()
         {
             return View();
         }
 
         [HttpPost]
-        [Authorize]
+        [Authorize(Roles = "admin")]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include="Id,Title")] CPU cpu)
+        public ActionResult Create([Bind(Include = "Id,Title")] CPU cpu)
         {
             if (ModelState.IsValid)
             {
@@ -42,7 +42,7 @@ namespace WebApplication.Controllers.Game
             return View(cpu);
         }
 
-        [Authorize]
+        [Authorize(Roles = "admin")]
         public ActionResult Edit(int? id)
         {
             if (id == null)
@@ -58,9 +58,9 @@ namespace WebApplication.Controllers.Game
         }
 
         [HttpPost]
-        [Authorize]
+        [Authorize(Roles = "admin")]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include="Id,Title")] CPU cpu)
+        public ActionResult Edit([Bind(Include = "Id,Title")] CPU cpu)
         {
             if (ModelState.IsValid)
             {
@@ -71,7 +71,7 @@ namespace WebApplication.Controllers.Game
             return View(cpu);
         }
 
-        [Authorize]
+        [Authorize(Roles = "admin")]
         public ActionResult Delete(int? id)
         {
             if (id == null)
@@ -86,7 +86,7 @@ namespace WebApplication.Controllers.Game
             return View(cpu);
         }
 
-        [Authorize]
+        [Authorize(Roles = "admin")]
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)

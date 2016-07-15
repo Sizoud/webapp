@@ -16,7 +16,7 @@ namespace WebApplication.Controllers.Game
         private HelpDeskContext db = new HelpDeskContext();
 
 
-        [Authorize]
+        [Authorize(Roles = "admin")]
         public ActionResult Index()
         {
             return View(db.Genres.ToList());
@@ -27,13 +27,13 @@ namespace WebApplication.Controllers.Game
             return PartialView(db.Genres.ToList());
         }
 
-        [Authorize]
+        [Authorize(Roles = "admin")]
         public ActionResult Create()
         {
             return View();
         }
 
-        [Authorize]
+        [Authorize(Roles = "admin")]
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Create([Bind(Include="Id,Title")] Genre genre)
@@ -48,7 +48,7 @@ namespace WebApplication.Controllers.Game
             return View(genre);
         }
 
-        [Authorize]
+        [Authorize(Roles = "admin")]
         public ActionResult Edit(int? id)
         {
             if (id == null)
@@ -63,7 +63,7 @@ namespace WebApplication.Controllers.Game
             return View(genre);
         }
 
-        [Authorize]
+        [Authorize(Roles = "admin")]
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Edit([Bind(Include="Id,Title")] Genre genre)
@@ -77,7 +77,7 @@ namespace WebApplication.Controllers.Game
             return View(genre);
         }
 
-        [Authorize]
+        [Authorize(Roles = "admin")]
         public ActionResult Delete(int? id)
         {
             if (id == null)
@@ -93,7 +93,7 @@ namespace WebApplication.Controllers.Game
         }
 
 
-        [Authorize]
+        [Authorize(Roles = "admin")]
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)

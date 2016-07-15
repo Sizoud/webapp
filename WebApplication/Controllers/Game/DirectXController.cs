@@ -14,19 +14,19 @@ namespace WebApplication.Controllers.Game
     public class DirectXController : Controller
     {
         private HelpDeskContext db = new HelpDeskContext();
-        [Authorize]
+        [Authorize(Roles = "admin")]
         public ActionResult Index()
         {
             return View(db.DirectXes.ToList());
         }
-        [Authorize]
+        [Authorize(Roles = "admin")]
         public ActionResult Create()
         {
             return View();
         }
 
         [HttpPost]
-        [Authorize]
+        [Authorize(Roles = "admin")]
         [ValidateAntiForgeryToken]
         public ActionResult Create([Bind(Include="Id,Title")] DirectX directx)
         {
@@ -40,7 +40,7 @@ namespace WebApplication.Controllers.Game
             return View(directx);
         }
 
-        [Authorize]
+        [Authorize(Roles = "admin")]
         public ActionResult Edit(int? id)
         {
             if (id == null)
@@ -55,7 +55,7 @@ namespace WebApplication.Controllers.Game
             return View(directx);
         }
 
-        [Authorize]
+        [Authorize(Roles = "admin")]
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Edit([Bind(Include="Id,Title")] DirectX directx)
@@ -69,7 +69,7 @@ namespace WebApplication.Controllers.Game
             return View(directx);
         }
 
-        [Authorize]
+        [Authorize(Roles = "admin")]
         public ActionResult Delete(int? id)
         {
             if (id == null)
@@ -84,7 +84,7 @@ namespace WebApplication.Controllers.Game
             return View(directx);
         }
 
-        [Authorize]
+        [Authorize(Roles = "admin")]
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)

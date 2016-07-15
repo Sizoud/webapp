@@ -56,7 +56,7 @@
         <div>
             <br />
             <button class="inline" onclick="location.href = '@Url.Action("Create", "Order", new {id = Model.Id})'">Купить</button>
-            @if (User.Identity.IsAuthenticated)
+            @if (User.IsInRole("admin"))
             {
                 <button class="inline" onclick="location.href = '@Url.Action("Edit", "Game", new {id = Model.Id})'">Редактировать</button>
                 <button class="inline" style="background: #d83e2d;" onclick="location.href = '@Url.Action("Delete", "Game", new {id = Model.Id})'">Удалить</button>
